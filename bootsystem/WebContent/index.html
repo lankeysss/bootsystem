@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="base/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="base/css/font-awesome.css?v=4.4.0" rel="stylesheet"> 
+    <link href="base/css/animate.css" rel="stylesheet">
+    <link href="base/css/style.css?v=4.1.0" rel="stylesheet"> 
+    <link href="base/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]--> 
+    <!-- Toastr script -->
+    <script type="text/javascript" src="base/js/jquery.min.js"></script> 
+    <script type="text/javascript" src="base/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript" src="base/js/plugins/toastr/toastr.min.js"></script>
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+</head>
+<body class="gray-bg">
+
+	<div class="middle-box text-center loginscreen  animated fadeInDown">
+    	<div>
+        	<div>
+            	<h1 class="logo-name" style="font-size: 70px;color: #BBBBBB;" >管理系统</h1>
+            </div>
+            <h3>欢迎使用系统</h3>
+            <form class="m-t" role="form" id="loginForm" >
+                <div class="form-group">
+                    <input type="text" id="userCode"  class="form-control" name="loginnm" placeholder="用户名" required="">
+                </div>
+                <div class="form-group">
+            		<input type="password" id="password" class="form-control" name="passwd" placeholder="密码" required="">
+                </div>
+                <div class="form-group">
+                  	<span  style=" float: left; "> 
+                   		<input type="text " id="yzm" class="form-control"  name="yzm"   placeholder="验证码" required=""  style="    width: 210px;">
+                    </span>	
+                    <img name="checkimg" id="checkimg" title="看不清楚，换一张"  style="cursor: pointer;vertical-align:middle" border="0" onclick="refreshImg();"/>
+                </div>
+            </form>   
+            <button class="btn btn-primary block full-width m-b" id="ykLogBut">登 录</button>
+            <button class="btn btn-primary block full-width m-b" id="reset" >重 输</button>
+			<p class="text-muted text-center"> 
+				<a href="index.html"><small>忘记密码了？</small>
+				</a>|<a href="jsp/system/register.html">注册一个新账号</a>
+			</p>
+        </div>
+    </div>
+    
+<script type="text/javascript">
+
+$(function(){
+	$("#userCode").keydown(function(a){ 
+    	if(a.keyCode==13){
+    		userSub();
+    	}
+    });
+    	
+    $("#password").keydown(function(a){ 
+    	if(a.keyCode==13){
+    		userSub();
+    	}
+    });
+    $("#yzm").keydown(function(a){ 
+		if(a.keyCode==13){
+			userSub();
+		}
+	});
+    refreshImg();
+   	
+   	$("#ykLogBut").click(function(){
+   		userSub();
+   	});
+   	$("#reset").click(function(){
+   		$("#userCode").val('');
+   		$("#password").val('');
+   	});
+    	
+    	
+});
+
+toastr.options = {
+	"closeButton": true,
+	"debug": false,
+	"progressBar": true,
+	"positionClass": "toast-top-right",
+	"onclick": null,
+	"showDuration": "400",
+	"hideDuration": "1000",
+	"timeOut": "7000",
+	"extendedTimeOut": "1000",
+	"showEasing": "swing",
+	"hideEasing": "linear",
+	"showMethod": "fadeIn",
+	"hideMethod": "fadeOut"
+}; 
+
+function userSub(){
+	$.ajax({
+		url: 'system/login',
+		data: $("#loginForm").serialize(),
+		dataType: 'text',
+		type: 'post',
+		success: function(result){
+			if('error' == result){
+				toastr.error("对不起","用户名或密码输入错误！");
+				$("#userCode").val('');
+		   		$("#password").val('');
+			}else if('main' == result){
+				window.location.href = 'jsp/system/main.html';
+			}
+		}
+	});
+}
+
+function refreshImg(){
+	$("#checkimg").attr("src",'base/img/yzm.jpg');
+}
+    
+</script>   
+    
+</body>
+</html>

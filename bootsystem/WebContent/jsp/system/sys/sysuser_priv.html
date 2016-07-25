@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>BOOT - Bootstrap Table</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link href="../../../base/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../../../base/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../../base/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="../../../base/css/animate.css" rel="stylesheet">
+    <link href="../../../base/css/style.css?v=4.1.0" rel="stylesheet">
+	<link href="../../../base/plugins/treegrid/css/jquery.treegrid.css" rel="stylesheet">
+	<link href="../../../base/css/plugins/iCheck/custom.css" rel="stylesheet">
+	<link href="../../../base/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <style type="text/css">    
+	    .modal-header {
+			padding: 10px  !important; 
+		}	
+	    .modal-footer {
+			padding: 5px  !important;
+	    }
+	    .form-group {
+			margin-bottom: 3px !important;
+		}
+	    h4 {
+			font-size: 24px !important;		
+		}
+		.col-sm-8 {
+			margin-bottom: 5px;
+		}
+		.float-e-margins .btn { 
+			padding-left: 4px;
+			padding-right: 4px;
+		}
+		.control-label{
+			padding-left: 0px;
+			padding-right: 0px;
+			width: 60px;
+		}
+		.col-md-2{ 
+			padding-left: 8px;
+			padding-right: 8px;
+			}
+		.ontr{
+			background-color: #DBDBDB;
+		}
+		.buttom-right{
+			margin-right: 5px;
+		}
+		.title-top{
+			margin-top: 7px;
+		}
+		.td-center{
+			text-align: center;
+		}
+		.checkbox-1{
+			color: rgb(1, 131, 1);
+			font-size: 18px;
+		}
+		.checkbox-2{
+			color: rgb(111, 113, 111);
+			font-size: 18px;
+		}
+	</style> 
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+    	<div class="row">
+    	
+      		<div class="col-sm-8">
+            	<div class="ibox float-e-margins">
+            		<div class="ibox-title">
+                		<h5>系统用户管理  </h5>
+                		<div class="ibox-tools">
+		                    <a class="collapse-link">
+		                        <i class="fa fa-chevron-up"></i>
+		                    </a>
+		                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		                        <i class="fa fa-wrench"></i>
+		                    </a>
+		                    <ul class="dropdown-menu dropdown-user">
+		                        <li><a href="#">选项1</a>
+		                        </li>
+		                        <li><a href="#">选项2</a>
+		                        </li>
+		                    </ul>
+		                    <a class="close-link">
+		                        <i class="fa fa-times"></i>
+		                    </a>
+		                </div>
+		           	</div>
+                	<div class="ibox-content">
+               	 		<div id="toolbar">
+               	 			<label class=" col-sm-3 control-label" style="">内容包含:</label>
+               	 			<div class="col-md-4">
+                      			<input type="text" id="keys" placeholder="请输入" class="form-control">
+                  			</div>
+				            <button id="button1" class="btn btn-primary pull-right"><i class="fa fa-check"></i>查询</button>
+				       	</div> 
+                  		<table id="table" class="table-hover"></table>
+					</div>
+        		</div> 
+      		</div>
+      		
+      		<div class="col-sm-4">
+        		<div class="ibox float-e-margins">
+            		<div class="ibox-title">
+		                <div class="ibox-tools title-top">
+		                    <a class="collapse-link">
+		                        <i class="fa fa-chevron-up"></i>
+		                    </a>
+		                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		                        <i class="fa fa-wrench"></i>
+		                    </a>
+		                    <ul class="dropdown-menu dropdown-user">
+		                        <li><a href="#">选项1</a>
+		                        </li>
+		                        <li><a href="#">选项2</a>
+		                        </li>
+		                    </ul>
+		                    <a class="close-link">
+		                        <i class="fa fa-times"></i>
+		                    </a>
+		                </div>
+		                <div style="height:40px"> 
+			            	<button id="button2" class="btn btn-danger pull-left buttom-right"><i class="fa fa-warning"></i>保存</button>
+			            	<button id="button3" class="btn btn-primary pull-left buttom-right"><i class="fa fa-check"></i>展开</button>
+			            	<button id="button4" class="btn btn-default pull-left buttom-right"><i class="fa fa-paste"></i>折叠</button> 
+			         	</div>  
+             		</div> 
+                	<div class="ibox-content"  style="display: block;overflow: auto;height: 445px;">
+                  		<table id="treegrids" class="table tree-2 table-bordered  table-condensed">
+                 			<thead><tr>
+                 				<th data-field="name" tabindex="0"><div class="th-inner ">菜单名称</div><div class="fht-cell"></div></th> 
+                 				<th data-field="ischk" tabindex="0"><div class="th-inner ">是否选中</div><div class="fht-cell"></div></th>
+                 			</tr></thead>
+                 			<tbody id="treebody"></tbody>
+						</table>	
+					</div> 
+        		</div> 
+      		</div>
+   		</div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="../../../base/js/jquery.min.js?v=2.1.4"></script>
+    <script src="../../../base/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <!-- 自定义js -->
+    <script src="../../../base/js/content.js?v=1.0.0"></script>
+	<script src="../../../base/plugins/treegrid/js/jquery.treegrid.js"  type="text/javascript"></script>
+	<script src="../../../base/js/plugins/toastr/toastr.min.js"  type="text/javascript"></script>
+
+    <!-- Bootstrap table -->
+    <script src="../../../base/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="../../../base/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="../../../base/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+ 	<!-- iCheck -->
+    <script src="../../../base/js/plugins/iCheck/icheck.min.js"></script>
+ 	<script type="text/javascript" >
+    
+ 	$(function(){
+ 		     	
+ 		//提示消息 
+ 		toastr.options = {
+		  	"closeButton": true,
+		  	"debug": false,
+		 	"progressBar": true,
+		 	"positionClass": "toast-top-right",
+		  	"onclick": null,
+		  	"showDuration": "400",
+		  	"hideDuration": "1000",
+		  	"timeOut": "7000",
+		  	"extendedTimeOut": "1000",
+		  	"showEasing": "swing",
+		  	"hideEasing": "linear",
+		  	"showMethod": "fadeIn",
+		  	"hideMethod": "fadeOut"
+		};
+		function fmt(value,row,index){ 
+			if(value=='1'){return '启用';}
+			else{ return '停用';}
+		};
+     		
+		$('#table').bootstrapTable({
+		    url: '/bootsystem/SysUserPriv/info',
+		    clickToSelect:true,
+		    singleSelect:true,
+		    toolbar:'#toolbar',
+		    toolbarAlign:'-',
+		    pagination:'true', 
+		    height:'400',
+		    sidePagination:'server',
+		    pageList:[10, 25, 50, 100,'All'],
+		    onLoadSuccess: onLoadSuccess,
+		    onClickRow: onClickRow,
+		    columns: [{
+		        title: '',
+		        field: 'state',
+		        radio:true
+		    },{
+		        title: '用户ID',
+		        field: 'userid',
+		        visible:false
+		    },{
+		        title: '用户代码',
+		        field: 'loginnm'
+		    }, {
+		        title: '用户姓名',
+		        field: 'usernm'
+		    },{
+		        title: '角色名称',
+		        field: 'rolename'
+		    },{
+		        title: '角色代码',
+		        field: 'roleidf',
+		        visible:false
+		    },{
+		        title: '启用',
+		        field: 'isvalid',
+		        formatter: fmt
+		    },{
+		        title: '排序码',
+		        field: 'sortnouser',
+		        visible:false
+		    },{
+		        title: '备注',
+		        field: 'memo',
+		        visible:false
+		    }]
+		}); 
+        
+      	//查询 /************ 查询  **********/ 
+        $("#button1").click(function(){  
+        	var data = {};
+        	data['keys']=$("#keys").val();
+        	refersh(data);
+        });
+      	//保存 /************保存  **********/ 
+        $("#button2").click(function(){  
+        	var data = [];
+        	var userid = $('input:checkbox:first').attr("data-uid");
+        	$("input[type='checkbox']:checked").each(function(){
+        		var js = {};
+        		js["funcid"] = $(this).val();
+        		js["userid"] = $(this).attr("data-uid");
+        		data.push(js);
+			});
+        	$.ajax({
+        		url : '/bootsystem/SysUserPriv/savepriv',
+        		type : 'POST',
+        		dataType : 'text',
+        		data : {jstr: JSON.stringify(data)},
+        		success : function(result){
+        			if(result == "success"){
+        				toastr.success("提示","保存成功！");
+        			}else{
+        				toastr.error("提示","保存失败！");
+        			}
+        			$("#treebody").html("");
+        	 		loaddata(userid);
+        		}
+        	});
+        });
+      	//展开 /************ 展开  **********/ 
+        $("#button3").click(function(){  
+        	$(".tree-2").treegrid('expandAll');
+        });
+      	//折叠 /************ 折叠 **********/ 
+        $("#button4").click(function(){  
+        	$(".tree-2").treegrid('collapseAll');
+        });
+      	
+   
+	});
+    //table完成事件 
+ 	function onLoadSuccess(data){
+ 		var userid = data.rows[0].userid;
+ 		$("#treebody").html("");
+ 		loaddata(userid);
+ 	}
+ 	//table行点击事件 
+ 	function onClickRow(rowData, ele){
+ 		var userid = rowData.userid;
+ 		$("#treebody").html("");
+ 		loaddata(userid);
+ 	}
+ 	//window重置 
+	window.onresize = function (){ 
+		$('#table').bootstrapTable('resetWidth', "");   
+	} 	
+	 
+    
+	//刷新 	
+	function refersh(data){
+	  	$('#table').bootstrapTable('refresh',{
+			url:'/bootsystem/SysUserPriv/info',
+			query:data
+		}); 
+	}
+    
+	//页面加载数据 
+ 	function loaddata(userid){
+     	$.ajax({
+          	url: "/bootsystem/SysUserPriv/funcinfo",
+          	dataType: "json",
+          	type : 'post',
+          	data : {'userid' : userid},
+          	success: function(res){
+          		var data = transData(res, "funcid", "parents", "chindren");
+          		loadchildren(data, "根目录菜单", userid);
+          		$(".tree-2").treegrid({
+              		expanderExpandedClass: "glyphicon glyphicon-minus",
+              		expanderCollapsedClass: "glyphicon glyphicon-plus",
+              		initialState: "collapsed"
+          		});
+          	}
+        });
+ 	}
+ 	//行点击事件 
+ 	$("#treebody").delegate("tr","click",function(){
+		$(this).addClass("ontr").siblings("tr").removeClass("ontr");
+		var value = $(this).attr("data-funid");
+		var name = $(this).attr("data-parents");
+		var $cbox = $("input[value='"+value+"']")
+		var ischecked = $cbox.is(':checked');
+		if(ischecked){
+			$cbox.each(function(){
+				this.checked=false;
+				$(this).next("i").removeClass("fa-check-square-o checkbox-2").addClass("fa-square-o checkbox-1");
+			});
+			var len = $("input[name='"+name+"']:checked").length;
+ 			if(len == 0){
+ 				$("input[value='"+name+"']").each(function(){
+ 					this.checked=false;
+ 					$(this).next("i").removeClass("fa-check-square-o checkbox-2").addClass("fa-square-o checkbox-1");
+ 				});
+ 			}else{
+ 				$("input[value='"+name+"']").each(function(){
+ 					this.checked=true;
+ 					$(this).next("i").removeClass("checkbox-1").addClass("checkbox-2");
+ 				});
+ 			}
+ 			$("input[name='"+value+"']").each(function(){
+ 				this.checked=false;
+ 				$(this).next("i").removeClass("fa-check-square-o checkbox-2").addClass("fa-square-o checkbox-1");
+ 			});
+		}else{
+			$cbox.each(function(){
+				this.checked=true;
+				$(this).next("i").removeClass("fa-square-o checkbox-2").addClass("fa-check-square-o checkbox-1");
+			});
+			var len = $("input[name='"+name+"']:checked").length;
+ 			var lenall = $("input[name='"+name+"']").length;
+ 			if(len == lenall){
+ 				$("input[value='"+name+"']").each(function(){
+ 					this.checked=true;
+ 					$(this).next("i").removeClass("checkbox-2").addClass("checkbox-1");
+ 				});
+ 			}else{
+ 				$("input[value='"+name+"']").each(function(){
+ 					this.checked=true;
+ 					$(this).next("i").removeClass("fa-square-o checkbox-1").addClass("fa-check-square-o checkbox-2");
+ 				});
+ 			}
+ 			$("input[name='"+value+"']").each(function(){
+ 				this.checked=true;
+ 				$(this).next("i").removeClass("fa-square-o checkbox-2").addClass("fa-check-square-o checkbox-1");
+ 			});
+		}
+	}); 
+ 	 /*
+ 	//复选框事件 
+ 	$("#treebody").delegate("input","change",function(){
+ 		var ischecked = $(this).is(':checked');
+ 		var name = $(this).attr("name");
+ 		var value = $(this).val();
+ 		if(ischecked){
+ 			var len = $("input[name='"+name+"']:checked").length;
+ 			var lenall = $("input[name='"+name+"']").length;
+ 			if(len == lenall){
+ 				$("input[value='"+name+"']").each(function(){
+ 					this.checked=true;
+ 					console.log(this);
+ 				});
+ 			}else{
+ 				$("input[value='"+name+"']").each(function(){this.checked=true;});
+ 			}
+ 			$("input[name='"+value+"']").each(function(){this.checked=true;});
+ 		}else{
+ 			var len = $("input[name='"+name+"']:checked").length;
+ 			if(len == 0){
+ 				$("input[value='"+name+"']").each(function(){this.checked=false;});
+ 			}else{
+ 				$("input[value='"+name+"']").each(function(){
+ 					this.checked=true;
+ 					console.log(this);
+ 				});
+ 			}
+ 			$("input[name='"+value+"']").each(function(){this.checked=false;});
+ 		}
+ 		
+	});
+ 	 */
+ 	//遍历子节点 
+ 	function loadchildren(children,parentname,userid){
+ 		for(var i in children){
+ 			var row=children[i];
+ 			row.parentname=parentname;
+ 			var tr=$("<tr id='tg_"+row.funcid+"' data-parents='"+row.parents+"' data-funid='"+row.funcid+"'></tr>").addClass("treegrid-"+row.funcid).appendTo($("#treebody"));
+     		if(row.parents!=0){
+     			tr.addClass("treegrid-parent-"+row.parents);
+     		}
+     		var ischk = $("<lable></lable>");
+     		if(row.id != null && row.id != ""){
+     			ischk.html('<input type="checkbox" data-uid="'+userid+'" name="'+row.parents+'" value="'+row.funcid+'" checked style="display: none;" /><i class="fa fa-check-square-o checkbox-1"></i>');
+     		}else{
+     			ischk.html('<input type="checkbox" data-uid="'+userid+'" name="'+row.parents+'" value="'+row.funcid+'" style="display: none;" /><i class="fa fa-square-o checkbox-1"></i>');
+     		}
+			var obj={
+				name: row.funcnm,
+				ischk: ischk,
+			};
+   			for(var key in obj){
+   				$("<td></td>").html(obj[key]).appendTo(tr);
+   			}
+   			var data = row.chindren;
+    		if(data != null){
+    			loadchildren(data, row.funcnm, userid);	
+    		}
+ 		}
+ 	} 	
+ 	//解析json 
+ 	function transData(jsons, idStr, pidStr, chindrenStr){  
+	    var r = [], hash = {};
+	    var id = idStr, pid = pidStr, children = chindrenStr;
+	    var i = 0, j = 0, len = jsons.length;  
+	    for(; i < len; i++){  
+	        hash[jsons[i][id]] = jsons[i];  
+	    }  
+	    for(; j < len; j++){  
+	        var aVal = jsons[j], hashVP = hash[aVal[pid]];  
+	        if(hashVP){  
+	            !hashVP[children] && (hashVP[children] = []);  
+	            hashVP[children].push(aVal);  
+	        }else{  
+	            r.push(aVal);  
+	        }  
+	    }  
+	    return r;  
+	} 
+     	
+	</script>
+    
+</body>
+
+</html>

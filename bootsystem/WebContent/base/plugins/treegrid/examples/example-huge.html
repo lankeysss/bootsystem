@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jquery-treegrid basic example</title>
+
+    <link rel="stylesheet" href="../css/jquery.treegrid.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.treegrid.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+      	//create huge treetable  
+      	//
+      	var count_root_elements=100;
+      	var count_deep=10;
+      	console.log('init');
+      	for(var i=0; i<count_root_elements; i++){
+      		console.log('add');
+      		var tr=$("<tr></tr>").addClass("treegrid-"+i+"-0").appendTo($('.tree')).html("<td>Root node "+i+"</td><td>Additional info</td>");
+
+	      	for(var j=1; j<count_deep; j++){
+				$("<tr></tr>").addClass("treegrid-"+i+"-"+j).addClass("treegrid-parent-"+i+"-"+(j-1)).appendTo($('.tree')).html("<td>Child node "+i+"-"+j+"</td><td>Additional info</td>");
+	      	}
+      	}
+
+        $('.tree').treegrid();
+      });
+    </script>
+
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+	  
+
+ <h1><a >TreeGrid</a> </h1>
+
+      <table class="tree"></table>	  
+ 
+    </div>
+
+    <script type="text/javascript">
+      var metas = document.getElementsByTagName('meta');
+      var i;
+      if (navigator.userAgent.match(/iPhone/i)) {
+        for (i = 0; i < metas.length; i++) {
+          if (metas[i].name == "viewport") {
+            metas[i].content = "width=device-width, minimum-scale=1.0, maximum-scale=1.0";
+          }
+        }
+        document.addEventListener("gesturestart", gestureStart, false);
+      }
+      function gestureStart() {
+        for (i = 0; i < metas.length; i++) {
+          if (metas[i].name == "viewport") {
+            metas[i].content = "width=device-width, minimum-scale=0.25, maximum-scale=1.6";
+          }
+        }
+      }
+      </script>
+
+  </body>
+</html>

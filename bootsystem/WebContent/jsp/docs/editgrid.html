@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      编辑数据表格 
+    </title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Bootstrap" />
+    <meta name="description" content="" />
+    <link href="../../base/css/css.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/font-awesome.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/se7en-font.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/isotope.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/jquery.fancybox.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/fullcalendar.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/wizard.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/select2.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/morris.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/datatables.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/datepicker.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/timepicker.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/colorpicker.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/bootstrap-switch.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/daterange-picker.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/typeahead.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/summernote.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/pygments.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/style.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/color/green.css" media="all" rel="alternate stylesheet" title="green-theme" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/color/orange.css" media="all" rel="alternate stylesheet" title="orange-theme" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/color/magenta.css" media="all" rel="alternate stylesheet" title="magenta-theme" type="text/css" />
+    <link href="../../base/css/plugins/jquerytreegrid/color/gray.css" media="all" rel="alternate stylesheet" title="gray-theme" type="text/css" />
+   
+      <script src="../../base/js/plugins/jquerytreegrid/jquery-1.10.2.min.js" Type="text/javascript"></script>
+  	  <script src="../../base/js/plugins/jquerytreegrid/jquery-ui.js" type="text/javascript"></script>
+  	  <script src="../../base/js/plugins/jquerytreegrid/bootstrap.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/raphael.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/selectivizr-min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.mousewheel.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.vmap.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.vmap.sampledata.js" type="text/javascript"> </script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.vmap.world.js" type="text/javascript"> </script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/fullcalendar.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/gcal.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.dataTables.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/datatable-editable.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.easy-pie-chart.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/excanvas.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.isotope.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/isotope_extras.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/modernizr.custom.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.fancybox.pack.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/select2.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/styleswitcher.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/wysiwyg.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/summernote.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.inputmask.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.validate.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/bootstrap-fileupload.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/bootstrap-datepicker.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/bootstrap-timepicker.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/bootstrap-colorpicker.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/bootstrap-switch.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/typeahead.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/daterange-picker.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/date.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/morris.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/skycons.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/fitvids.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/jquery.sparkline.min.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/main.js" type="text/javascript"></script>
+  		<script src="../../base/js/plugins/jquerytreegrid/respond.js" type="text/javascript"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  </head>
+  <body  style="padding-top: 30px;">
+    <div class="modal-shiftfix">
+      <!-- Navigation --> 
+      <!-- End Navigation -->
+      <div class="container-fluid main-content">
+        <div class="page-title">
+          <h1>
+              编辑数据表格
+          </h1>
+        </div>
+        <!-- DataTables Example -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="heading">
+                <i class="icon-table"></i>数据表格排序<a class="btn btn-sm btn-primary-outline pull-right" href="#" id="add-row"><i class="icon-plus"></i>添加一行</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-bordered table-striped" id="datatable-editable">
+                  <thead>
+                    <th>
+                          姓名
+                    </th>
+                    <th>
+                           职位
+                    </th>
+                    <th class="hidden-xs">
+                          邮箱
+                    </th>
+                    <th class="hidden-xs">
+                          添加日期
+                    </th>
+                    <th class="hidden-xs">
+                          状态
+                    </th>
+                    <th width="60"></th>
+                    <th width="75"></th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        初雪
+                      </td>
+                      <td>
+                          客服
+                      </td>
+                      <td class="hidden-xs">
+                        robert@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        8-15-2013
+                      </td>
+                      <td class="hidden-xs">
+                          批准
+                      </td>
+                      <td>
+                        <a class="edit-row" href="#">编辑</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="#">删除</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          采萱
+                      </td>
+                      <td>
+                          客服主管
+                      </td>
+                      <td class="hidden-xs">
+                        john@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        8-15-2013
+                      </td>
+                      <td class="hidden-xs">
+                          待处理
+                      </td>
+                      <td>
+                        <a class="edit-row" href="#">编辑</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="#">删除</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          怀玉
+                      </td>
+                      <td>
+                          电销
+                      </td>
+                      <td class="hidden-xs">
+                        olivia@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        8-15-2013
+                      </td>
+                      <td class="hidden-xs">
+                          批准
+                      </td>
+                      <td>
+                        <a class="edit-row" href="#">编辑</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="#">删除</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          古兰
+                      </td>
+                      <td>
+                          电销组长
+                      </td>
+                      <td class="hidden-xs">
+                        elliot@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        8-15-2013
+                      </td>
+                      <td class="hidden-xs">
+                          拒绝
+                      </td>
+                      <td>
+                        <a class="edit-row" href="#">编辑</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="#">删除</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Maggie
+                      </td>
+                      <td>
+                          电销主管
+                      </td>
+                      <td class="hidden-xs">
+                        maggie@gmail.com
+                      </td>
+                      <td class="hidden-xs">
+                        8-15-2013
+                      </td>
+                      <td class="hidden-xs">
+                          批准
+                      </td>
+                      <td>
+                        <a class="edit-row" href="#">编辑</a>
+                      </td>
+                      <td>
+                        <a class="delete-row" href="#">删除</a>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            初雪
+                        </td>
+                        <td>
+                            客服
+                        </td>
+                        <td class="hidden-xs">
+                            robert@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            采萱
+                        </td>
+                        <td>
+                            客服主管
+                        </td>
+                        <td class="hidden-xs">
+                            john@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            待处理
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            怀玉
+                        </td>
+                        <td>
+                            电销
+                        </td>
+                        <td class="hidden-xs">
+                            olivia@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            古兰
+                        </td>
+                        <td>
+                            电销组长
+                        </td>
+                        <td class="hidden-xs">
+                            elliot@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            拒绝
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Maggie
+                        </td>
+                        <td>
+                            电销主管
+                        </td>
+                        <td class="hidden-xs">
+                            maggie@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            初雪
+                        </td>
+                        <td>
+                            客服
+                        </td>
+                        <td class="hidden-xs">
+                            robert@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            采萱
+                        </td>
+                        <td>
+                            客服主管
+                        </td>
+                        <td class="hidden-xs">
+                            john@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            待处理
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            怀玉
+                        </td>
+                        <td>
+                            电销
+                        </td>
+                        <td class="hidden-xs">
+                            olivia@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            古兰
+                        </td>
+                        <td>
+                            电销组长
+                        </td>
+                        <td class="hidden-xs">
+                            elliot@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            拒绝
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Maggie
+                        </td>
+                        <td>
+                            电销主管
+                        </td>
+                        <td class="hidden-xs">
+                            maggie@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            初雪
+                        </td>
+                        <td>
+                            客服
+                        </td>
+                        <td class="hidden-xs">
+                            robert@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            采萱
+                        </td>
+                        <td>
+                            客服主管
+                        </td>
+                        <td class="hidden-xs">
+                            john@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            待处理
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            怀玉
+                        </td>
+                        <td>
+                            电销
+                        </td>
+                        <td class="hidden-xs">
+                            olivia@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            古兰
+                        </td>
+                        <td>
+                            电销组长
+                        </td>
+                        <td class="hidden-xs">
+                            elliot@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            拒绝
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Maggie
+                        </td>
+                        <td>
+                            电销主管
+                        </td>
+                        <td class="hidden-xs">
+                            maggie@gmail.com
+                        </td>
+                        <td class="hidden-xs">
+                            8-15-2013
+                        </td>
+                        <td class="hidden-xs">
+                            批准
+                        </td>
+                        <td>
+                            <a class="edit-row" href="#">编辑</a>
+                        </td>
+                        <td>
+                            <a class="delete-row" href="#">删除</a>
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end DataTables Example -->
+      </div>
+    </div> 
+  </body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>BOOT - Bootstrap Table</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link href="../../../base/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../../../base/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../../../base/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="../../../base/css/animate.css" rel="stylesheet">
+    <link href="../../../base/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="../../../base/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="../../../base/css/plugins/treeview/bootstrap-treeview.css" rel="stylesheet">
+    <style type="text/css">    
+    .modal-header {
+		padding: 10px  !important; 
+	}	
+    .modal-footer {
+		padding: 5px  !important;
+    }
+    .form-group {
+		margin-bottom: 3px !important;
+	}
+    h4 {
+		font-size: 24px !important;		
+	}
+	.col-sm-8 {
+		margin-bottom: 5px;
+	}
+	.keep-open{
+		margin-top: -10px;
+	}
+	.buttom-left{
+		margin-left: 5px;
+	}
+	.option-span{
+		margin: 5px 0px;
+	}
+	</style> 
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+    	<div class="row">
+    		<div class="col-sm-12">
+        		<div class="ibox float-e-margins">
+            		<div class="ibox-title">
+		                <h5>系统用户管理  </h5>
+		                <div class="ibox-tools">
+		                    <a class="collapse-link">
+		                        <i class="fa fa-chevron-up"></i>
+		                    </a>
+		                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		                        <i class="fa fa-wrench"></i>
+		                    </a>
+		                    <ul class="dropdown-menu dropdown-user">
+		                        <li><a href="#">选项1</a>
+		                        </li>
+		                        <li><a href="#">选项2</a>
+		                        </li>
+		                    </ul>
+		                    <a class="close-link">
+		                        <i class="fa fa-times"></i>
+		                    </a>
+		                </div>
+		           	</div>
+		            <div class="ibox-content">
+		            	<div id="toolbar">
+		                	<label class=" col-sm-2 control-label" style="width: 75px;padding-right: 0px;">内容包含:</label>
+	                		<div class="col-md-3">
+		                    	<input type="text" id="sysuser_keys" placeholder="请输入" class="form-control" name="name" required="" aria-required="true">
+		                    </div>
+				            <button id="button4" class="btn btn-danger pull-right buttom-left" data-toggle="modal">
+				            	<i class="fa fa-warning"></i>删除</button>
+				            <button id="button3" class="btn btn-default pull-right buttom-left" data-toggle="modal">
+				            	<i class="fa fa-paste"></i>修改</button>
+				            <button id="button2" class="btn btn-success pull-right buttom-left" data-toggle="modal" data-target="#myModal2">
+				            	<i class="fa fa-plus"></i>增加</button>
+				            <button id="button1" class="btn btn-primary pull-right buttom-left"><i class="fa fa-check"></i>查询</button>
+                        </div>
+                        <!-- modify window -->				            
+						<div class="modal inmodal" id="myModal1" data-toggle="modal" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog">
+	                        	<div class="modal-content animated bounceInRight">
+	                            	<div class="modal-header">
+	                                	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+	                                    </button> 
+	                                    <h4>修改</h4> 
+	                               	</div>
+	                                <div class="modal-body">
+	                                    <form class="form-horizontal" id="form-horizontal1">
+	                                    	<div class="form-group">
+                                       				<input id="userid_modify" type="hidden" name="sysUser.userid"/>
+					                            <label class="col-sm-3 control-label">用户代码：</label> 
+				                                <div class="col-sm-8">
+				                                    <input type="text" placeholder="用户代码" id="usercode_modify" class="form-control"> <span class="help-block m-b-none">请输入您的用户代码</span>
+				                                </div>
+				                                <label class="col-sm-3 control-label">用户名称：</label> 
+				                                <div class="col-sm-8">
+				                                    <input type="text" placeholder="用户名称" id="username_modify" class="form-control"> <span class="help-block m-b-none">请输入您的用户名称</span>
+				                                </div>
+				                                <label class="col-sm-3 control-label">用户角色：</label> 
+				                                <div class="col-sm-8"> 
+					                                <select class="form-control m-b" id="roleid_modify" name="roleid_modify">
+			                                    	</select>
+				                                </div>
+				                                <label class="col-sm-3 control-label">组织机构：</label> 
+				                                <div class="col-sm-8"> 
+					                                <select class="form-control m-b" id="dept_modify" name="dept_modify">
+			                                    	</select>
+				                                </div>
+				                                <label class="col-sm-3 control-label">启用：</label> 
+				                                <div class="col-sm-8">
+					                                <select id="isvalid_modify" class="form-control m-b" name="isvalid_modify">
+				                                        <option value="1">启用</option>
+				                                        <option value="0">不启用</option> 
+			                                   		</select>
+		                                    	</div>
+				                                <label class="col-sm-3 control-label">排序码：</label> 
+				                                <div class="col-sm-8">
+				                                    <input type="text" id="sortno_modify" placeholder="排序码" class="form-control"> <span class="help-block m-b-none">请输入排序码</span>
+				                                </div>
+				                                <label class="col-sm-3 control-label">备注：</label> 
+				                                <div class="col-sm-8">
+				                                    <input id="memo_modify" name="sysUser.memo" type="text" placeholder="备注" class="form-control"> <span class="help-block m-b-none">请填写备注</span>
+				                                </div>
+							                </div> 
+                                     	</form>
+                                       </div>
+                                       <div class="modal-footer">
+                                           <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                           <button type="button" id="modify_savebtn" class="btn btn-primary">保存</button>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+		                <!-- add window -->
+		                <div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content animated flipInY">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4>新增编辑</h4> 
+                                    </div>
+                                    <div class="modal-body">
+                                     	<form class="form-horizontal"  id="form-horizontal">
+                                    		<div class="form-group">
+                                   					<input id="userid" type="hidden" name="userid"/>
+	                                <label class="col-sm-3 control-label">用户代码：</label> 
+	                                <div class="col-sm-8">
+	                                    <input id="usercode" type="text" name="usercode" data-bv-notempty data-bv-notempty-message="验证码不能为空" placeholder="用户代码" class="form-control" required="" aria-required="true"> <span class="help-block m-b-none">请输入您的用户代码</span>
+	                                </div>
+	                                <label class="col-sm-3 control-label">用户名称：</label> 
+	                                <div class="col-sm-8">
+	                                    <input type="text" id="username" name="username" placeholder="用户名称" class="form-control" required="" aria-required="true"> <span class="help-block m-b-none">请输入您的用户名称</span>
+	                                </div>
+	                                <label class="col-sm-3 control-label">用户角色：</label> 
+	                                <div class="col-sm-8" >  
+		                                <select class="form-control m-b" id="roleids" name="roleids" aria-required="true">
+	                                    </select>
+	                                </div>
+	                                <label class="col-sm-3 control-label">组织机构：</label> 
+	                                <div class="col-sm-8" >  
+		                                <select class="form-control m-b" id="depts" name="depts" aria-required="true">
+	                                    </select>
+	                                </div>
+	                                <label class="col-sm-3 control-label">启用：</label> 
+	                                <div class="col-sm-8">
+		                                <select id="isvalid" class="form-control m-b" name="isvalid" required="" aria-required="true">
+	                                        <option value="1">启用</option>
+	                                        <option value="0">不启用</option> 
+                                  		 </select>
+                                  		</div>
+	                                <label class="col-sm-3 control-label">排序码：</label> 
+	                                <div class="col-sm-8">
+	                                    <input id="sortno" name="sortno" type="text"  placeholder="排序码" class="form-control" required="" aria-required="true"> <span class="help-block m-b-none">请输入排序码</span>
+	                                </div>
+	                                <label class="col-sm-3 control-label">备注：</label> 
+	                                <div class="col-sm-8">
+	                                    <input aria-required="true" required="" id="memo" name="memo" type="text" placeholder="备注" class="form-control"> <span class="help-block m-b-none">请填写备注</span>
+	                                </div>
+	                                <input type="reset" id="reset" hidden="hidden" />
+			                	 </div> 
+                                 	 	</form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="closebtn" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                        <button type="button" id="savebtn" class="btn btn-primary" >保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--删除弹窗  -->
+                        <div class="modal inmodal fade" id="myModal3" tabindex="-1" role="dialog"  aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title">确认删除</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>注意！</strong> 请确认是否要删除该数据，一旦删除无法恢复！</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                                        <button type="button" id="delyesbtn" class="btn btn-primary" data-dismiss="modal">确认</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+               			<table id="table"></table>
+           			</div>
+            	</div> 
+       		</div>
+   		</div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="../../../base/js/jquery.min.js?v=2.1.4"></script>
+    <script src="../../../base/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <!-- 自定义js -->
+    <script src="../../../base/js/content.js?v=1.0.0"></script>
+	<script src="../../../base/js/plugins/treeview/bootstrap-treeview.js"></script>
+
+    <!-- Bootstrap table -->
+    <script src="../../../base/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="../../../base/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="../../../base/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+ 	<script src="../../../base/js/plugins/toastr/toastr.min.js" type="text/javascript" ></script>
+	<script src="../../../base/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="../../../base/js/plugins/validate/messages_zh.min.js"></script>
+
+    
+    <script type="text/javascript" >
+	    $.validator.setDefaults({
+	    	highlight: function (element) {
+	            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+	        },
+	        success: function (element) {
+	            element.closest('.form-group').removeClass('has-error').addClass('has-success');
+	        },
+	        errorElement: "span",
+	        errorPlacement: function (error, element) {
+	            if (element.is(":radio") || element.is(":checkbox")) {
+	                error.appendTo(element.parent().parent().parent());
+	            } else {
+	                error.appendTo(element.parent());
+	            }
+	        },
+	        errorClass: "help-block m-b-none",
+	        validClass: "help-block m-b-none"
+	    });
+		/*
+		$().ready(function() {
+		  var validator= $("#commentForm").validate();
+		   validator.form(); 
+		}); 
+		*/
+		   
+	 	var validate;
+     	$(function(){
+   
+			/******** 绑定下拉 ********/
+			$.ajax({
+				url : '/bootsystem/SysUser/roledeptinfo',
+				type : 'post',
+				dataType : 'json',
+				success : function(result){
+					var roles = result.role;
+					var depts = result.dept;
+					var rolestr="";
+					for(var i=0;i<roles.length;i++){
+						rolestr = rolestr+'<option value="'+roles[i].rolecode+'">'+roles[i].rolename+'</option>';
+					}
+					$('#roleid_modify').append(rolestr);  
+					$('#roleids').append(rolestr);  
+					//下拉树 
+					var data = transData(depts, "deptid", "parents", "nodes");
+					var sygn = 0;					
+					var selectTree = creatSelectTree(data,sygn);
+					$('#dept_modify').html(selectTree);
+					$('#depts').html(selectTree);
+				}
+			});
+     		
+     		function fmt(value,row,index){ 
+     			if(value=='1'){
+     				return '启用';
+     			}else{
+     				return '停用';
+     			}
+     		};
+     		
+			$('#table').bootstrapTable({
+			    url: '/bootsystem/SysUser/info',
+			    clickToSelect:true,
+			    singleSelect:true,
+			    toolbar:'#toolbar',
+			    toolbarAlign:'-',
+			    pagination:'true', 
+			    height:'400',
+			    sidePagination:'server',
+			    pageList:[10, 25, 50, 100,'All'],
+			    showColumns: true,
+			    columns: [{
+			        title: '',
+			        field: 'state',
+			        radio:true
+			    },{
+			        title: '用户ID',
+			        field: 'userid',
+			        visible:false
+			    },{
+			        title: '角色ID',
+			        field: 'roleidf',
+			        visible:false
+			    },{
+			        title: '组织ID',
+			        field: 'deptidf',
+			        visible:false
+			    },{
+			        title: '用户代码',
+			        field: 'loginnm'
+			    }, {
+			        title: '用户姓名',
+			        field: 'usernm'
+			    },{
+			        title: '角色名称',
+			        field: 'rolename'
+			    },{
+			        title: '组织机构',
+			        field: 'deptnm'
+			    },{
+			        title: '启用',
+			        field: 'isvalid',
+			        formatter: fmt
+			    },{
+			        title: '排序码',
+			        field: 'sortnouser',
+			        visible:false
+			    },{
+			        title: '备注',
+			        field: 'memo',
+			        visible:false
+			    }]
+			}); 
+			
+			toastr.options = {
+			  "closeButton": true,
+			  "debug": false,
+			  "progressBar": true,
+			  "positionClass": "toast-top-right",
+			  "onclick": null,
+			  "showDuration": "400",
+			  "hideDuration": "1000",
+			  "timeOut": "7000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+			};
+			
+			//查询 
+			$("#button1").click(query);
+			/************ 查询  **********/
+	     	function query(){
+	     		var data = {};
+	     		data['keys']=$("#sysuser_keys").val();
+				$('#table').bootstrapTable('refresh',{
+				 	url: '/bootsystem/SysUser/info',
+					query: data
+				}); 
+			}
+			
+	     	//删除按钮 
+			$("#button4").click(function(){
+				var selectRow = $('#table').bootstrapTable('getSelections','');
+				if(selectRow.length!=0){
+	     			$("#myModal3").modal('show');
+	     		}else{
+	     			toastr.warning("提示","请选中一行数据！");
+     			}
+			});
+			//删除窗口:确定按钮 
+			$("#delyesbtn").click(delSysUser);
+			/************ 删除  **********/
+	     	function delSysUser(){
+	     		var del_userid='';
+	     		var selectRow = $('#table').bootstrapTable('getSelections','');
+	     		if(selectRow.length!=0){
+	     			del_userid = selectRow[0].userid;
+	     		}
+	     		$.ajax({
+					url:'/bootsystem/SysUser/delsysuser',
+					type:'POST',
+					dataType:'text',
+					data:{'node': del_userid},
+					success:function(result){
+						if(result == "success"){
+							refersh();
+							toastr.success("提示","删除成功！");
+						}else if(result == 'fail'){
+							toastr.error("提示","删除失败！");
+						}
+					}
+				});
+	     		
+	     	}
+			//表单验证 
+			var icon = "<i class='fa fa-times-circle'></i> ";
+			validate = $("#form-horizontal").validate({
+                rules: {
+                    usercode: "required",
+                    username: {
+                        required: true,
+                    },
+                    sortno: {
+                        required: true,
+                    },
+                    memo: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    usercode: icon + "请输入用户代码",
+                    username: {
+                        required: icon + "请输入您的用户名",
+                    },
+                    sortno: icon + "请输入排序码",
+                    memo: {
+                        required: icon + "备注",
+                        element: '#agree-error'
+                    }
+                }
+            });
+			
+			$("#savebtn").click(save);//新增窗口的保存按钮 
+			$("#modify_savebtn").click(updateUser);//修改窗口的保存按钮 
+						
+			//修改 
+			$("#button3").click(function (){
+				$("#myModal1").modal('show');
+				var selectrow=$('#table').bootstrapTable('getSelections', '');
+				if(selectrow.length==0){     //没选中默认选中第一行 
+					$('#table').bootstrapTable('check', 0);
+				}
+				selectrow=$('#table').bootstrapTable('getSelections', '');
+				if(selectrow.length!= 0){
+					$("#userid_modify").val(selectrow[0].userid);
+					$("#usercode_modify").val(selectrow[0].loginnm);
+					$("#username_modify").val(selectrow[0].usernm);
+					$("#roleid_modify").val(selectrow[0].roleidf);
+					$("#dept_modify").val(selectrow[0].deptidf);
+					$("#isvalid_modify").val(selectrow[0].isvalid);
+					$("#sortno_modify").val(selectrow[0].sortnouser);
+					$("#memo_modify").val(selectrow[0].memo);
+				}
+			});
+			
+     	});
+     		
+     		
+     	window.onresize = function () { 
+     		$('#table').bootstrapTable('resetWidth', "");
+     	}
+     	
+     	function getSysUserinfo_modify(){
+     		var data = {};
+     		data['userid']=$("#userid_modify").val();
+     		data['loginnm']=$("#usercode_modify").val();
+     		data['usernm']=$("#username_modify").val();
+     		data['roleidf']=$("#roleid_modify").val();
+     		data['deptidf']=$("#dept_modify").val();
+     		data['isvalid']=$("#isvalid_modify").val();
+     		data['sortnouser']=$("#sortno_modify").val();
+     		data['memo']=$("#memo_modify").val();
+     		return data;
+     	
+     	}
+     	function getSysUserinfo(){
+     		var data = {};
+     		data['userid']= "insert_"+$("#userid").val();
+     		data['loginnm']=$("#usercode").val();
+     		data['usernm']=$("#username").val();
+     		data['roleidf']=$("#roleids").val();
+     		data['deptidf']=$("#depts").val();
+     		data['isvalid']=$("#isvalid").val();
+     		data['sortnouser']=$("#sortno").val();
+     		data['memo']=$("#memo").val();
+     		return data;
+     	}
+     	/******* 修改用户 *********/
+     	function updateUser(){
+     		var data = getSysUserinfo_modify();
+			$.ajax({
+				url : '/bootsystem/SysUser/save',
+				type : 'POST',
+				dataType : 'text',
+				data : {jstr: JSON.stringify(data)},
+				success : function(result){
+					if(result == "success"){
+						toastr.success("提示","修改成功！");
+					}else{
+						toastr.error("提示","修改失败！");
+					}
+					$("#myModal1").modal('hide');
+					refersh();
+					$("#reset").trigger("click");
+				}
+			});
+     	
+     	}
+     	/******* 保存用户 *********/
+     	function save(){
+     		var formflag = validate.form();//表单验证 
+     		if(!formflag){
+     			 return;
+     		}
+     		$.ajax({
+				url : '/bootsystem/SysUser/sysuserNID',
+				type : 'POST',
+				dataType : 'text',
+				success : function(result){
+					$("#userid").val(result);
+					var data = getSysUserinfo();
+					$.ajax({
+						url : '/bootsystem/SysUser/save',
+						type : 'POST',
+						dataType : 'text',
+						data : {jstr: JSON.stringify(data)},
+						success : function(result){
+							if(result == "success"){
+								$("#myModal2").modal('hide');
+								refersh();
+								toastr.success("提示","添加成功！");
+							}else{
+								$("#myModal2").modal('hide');
+								toastr.error("提示","添加失败！");
+							}
+						}
+					});
+				}
+			});
+		}
+     	
+     	function refersh(){
+     		$('#table').bootstrapTable('refresh',{
+				 url:'/bootsystem/SysUser/info',
+				 query:{}
+			}); 
+     	}
+     	//生成下拉树 
+     	function creatSelectTree(data,sygn){
+     	 	var option="";
+     		for(var i=0;i<data.length;i++){
+     			var node = data[i].nodes;
+     			if(node != null){
+     				option += "<option value='"+data[i].deptid+"'>"+indent(sygn)+data[i].text+"</option>";
+     				sygn += 1;
+     				option += creatSelectTree(data[i].nodes,sygn);
+     				sygn -= 1;
+     	    	}else{
+     	     		option += "<option value='"+data[i].deptid+"'>"+indent(sygn)+data[i].text+"</option>";
+     	    	}
+     	    }
+     		return option;
+     	}
+     	function indent(n){
+     		var indents = "";
+     		for(var i=0;i<n;i++){
+     			indents = indents + "&nbsp;&nbsp;&nbsp;&nbsp;";
+     		}
+     		return indents;
+     	}
+     	//解析json 
+     	function transData(jsons, idStr, pidStr, chindrenStr){  
+     	    var r = [], hash = {};
+     	    var id = idStr, pid = pidStr, children = chindrenStr;
+     	    var i = 0, j = 0, len = jsons.length;  
+     	    for(; i < len; i++){  
+     	        hash[jsons[i][id]] = jsons[i];  
+     	    }  
+     	    for(; j < len; j++){  
+     	        var aVal = jsons[j], hashVP = hash[aVal[pid]];  
+     	        if(hashVP){  
+     	            !hashVP[children] && (hashVP[children] = []);  
+     	            hashVP[children].push(aVal);  
+     	        }else{  
+     	            r.push(aVal);  
+     	        }  
+     	    }  
+     	    return r;  
+     	} 
+     	
+     </script>
+    
+
+</body>
+
+</html>
